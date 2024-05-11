@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\V1\Book;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBookRequest;
+use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -14,9 +16,9 @@ class BookController extends Controller
         return Book::all();
     }
 
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
-        return Book::create($request->validate());
+        return Book::create($request->validated());
     }
 
     public function show(Book $book)
@@ -24,9 +26,9 @@ class BookController extends Controller
         return $book;
     }
 
-    public function update(Request $request, Book $book)
+    public function update(UpdateBookRequest $request, Book $book)
     {
-        return $book->update($request->validate());
+        return $book->update($request->validated());
     }
 
     public function destroy(Book $book)
