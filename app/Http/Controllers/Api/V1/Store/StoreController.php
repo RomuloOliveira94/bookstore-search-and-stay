@@ -11,12 +11,12 @@ class StoreController extends Controller
 {
     public function index()
     {
-        return Store::all();
+        return Store::with('books')->get();
     }
 
     public function show(Store $store)
     {
-        return $store;
+        return $store->load('books');
     }
 
     public function store(StoreStoreRequest $request)
