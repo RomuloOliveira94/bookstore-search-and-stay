@@ -4,7 +4,7 @@ namespace App\Http\Requests\BookStore;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBookStoreRequest extends FormRequest
+class UpdateBookStoreRequest extends FormRequest
 {
 
     public function authorize(): bool

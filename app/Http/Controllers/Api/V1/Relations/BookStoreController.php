@@ -10,21 +10,6 @@ use App\Models\Store;
 class BookStoreController extends Controller
 {
 
-    public function index(Book $book)
-    {
-        return $book->stores;
-    }
-
-    public function show(Book $book, Store $store)
-    {
-        if (!$book->stores()->find($store->id)) {
-            return response()->json(['error' => 'Store not found in this book'], 404);
-        }
-
-        return $store;
-    }
-
-
     public function store(Book $book, Store $store, StoreBookStoreRequest $request)
     {
 
@@ -41,6 +26,18 @@ class BookStoreController extends Controller
         $book->stores()->attach($store, $request->validated());
 
         return response()->json(['message' => 'Store added to book'], 200);
+    }
+
+
+    public function update(Book $book, Store $store, StoreBookStoreRequest $request)
+    {
+        if (!$book->stores()->find($store->id)) {
+            return response()->json(['error' => 'Store not found in this book'], 404);
+        }
+
+        $book->stores()->updateExistingPivot($store->id, $request->validated());
+
+        return response()->json(['message' => 'Store updated in book'], 200);
     }
 
     public function destroy(Book $book, Store $store)

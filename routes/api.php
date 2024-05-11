@@ -17,6 +17,7 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('/books', BookController::class);
         Route::apiResource('/stores' , StoreController::class);
         Route::post('/books/{book}/stores/{store}', [BookStoreController::class, 'store']);
+        Route::put('/books/{book}/stores/{store}', [BookStoreController::class, 'update']);
         Route::delete('/books/{book}/stores/{store}', [BookStoreController::class, 'destroy']);
     });
 });
