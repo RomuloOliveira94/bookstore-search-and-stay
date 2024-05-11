@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateStoreRequest extends FormRequest
 {
-   
+
     public function authorize(): bool
     {
         return true;
@@ -16,8 +16,8 @@ class UpdateStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string|required|max:255',
-            'address' => 'string|required|max:255',
+            'name' => 'string|max:255',
+            'address' => 'string|max:255',
             'active' => 'nullable|boolean'
         ];
     }

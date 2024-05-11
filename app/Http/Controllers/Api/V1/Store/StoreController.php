@@ -5,32 +5,33 @@ namespace App\Http\Controllers\Api\V1\Store;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Store\StoreStoreRequest;
 use App\Http\Requests\Store\UpdateStoreRequest;
-use App\Models\Book;
+use App\Models\Store;
 
 class StoreController extends Controller
 {
     public function index()
     {
-        return Book::all();
+        return Store::all();
     }
 
-    public function show(Book $book)
+    public function show(Store $store)
     {
-        return $book;
+        return $store;
     }
 
     public function store(StoreStoreRequest $request)
     {
-        return Book::create($request->validated());
+        return Store::create($request->validated());
     }
 
-    public function update(UpdateStoreRequest  $request, Book $book)
+    public function update(UpdateStoreRequest  $request, Store $store)
     {
-        return $book->update($request->validated());
+        return $store->update($request->validated());
     }
 
-    public function destroy(Book $book)
+    public function destroy(Store $store)
     {
-        return $book->delete();
+        $store->delete();
+        return response()->noContent();
     }
 }

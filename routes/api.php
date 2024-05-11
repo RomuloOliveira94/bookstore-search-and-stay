@@ -14,6 +14,6 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/logout', [LogoutController::class, 'logout']);
         Route::apiResource('/books', BookController::class);
-        Route::apiResource('/store' , StoreController::class);
+        Route::apiResource('/stores' , StoreController::class);
     });
 });
