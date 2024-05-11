@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Store;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBookRequest extends FormRequest
+class StoreStoreRequest extends FormRequest
 {
 
     public function authorize(): bool
@@ -16,9 +16,9 @@ class StoreBookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'ISBN' => 'required|integer',
-            'value' => 'required|numeric'
+            'name' => 'string|max:255',
+            'address' => 'string|max:255',
+            'active' => 'nullable|boolean'
         ];
     }
 }
