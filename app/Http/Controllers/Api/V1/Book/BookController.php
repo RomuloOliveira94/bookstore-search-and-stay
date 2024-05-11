@@ -13,4 +13,24 @@ class BookController extends Controller
     {
         return Book::all();
     }
+
+    public function store(Request $request)
+    {
+        return Book::create($request->validate());
+    }
+
+    public function show(Book $book)
+    {
+        return $book;
+    }
+
+    public function update(Request $request, Book $book)
+    {
+        return $book->update($request->validate());
+    }
+
+    public function destroy(Book $book)
+    {
+        return $book->delete();
+    }
 }
