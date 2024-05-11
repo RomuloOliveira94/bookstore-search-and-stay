@@ -22,7 +22,7 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
-        return $book;
+        return $book->load('stores');
     }
 
     public function update(UpdateBookRequest $request, Book $book)
