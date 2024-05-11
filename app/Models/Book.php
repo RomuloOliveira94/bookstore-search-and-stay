@@ -10,4 +10,9 @@ class Book extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'ISBN', 'value'];
+
+    public function stores()
+    {
+        return $this->belongsToMany(Store::class)->withPivot('quantity');
+    }
 }

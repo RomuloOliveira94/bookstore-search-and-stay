@@ -14,4 +14,9 @@ class Store extends Model
         'address',
         'active'
     ];
+
+    public function books()
+    {
+        return $this->belongsToMany(Book::class)->withPivot('quantity');
+    }
 }

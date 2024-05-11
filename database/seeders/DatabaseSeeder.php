@@ -18,5 +18,14 @@ class DatabaseSeeder extends Seeder
         User::factory(5)->create();
         Book::factory(15)->create();
         Store::factory(10)->create();
+
+        $books = Book::all();
+        
+        Store::all()->each(function ($store) use ($books) {
+            $store->books()->attach(
+                $books->random(rand(1, 5))->pluck('id')->toArray(),
+                ['quantity' => rand(1, 10)]
+            );
+        });
     }
 }
