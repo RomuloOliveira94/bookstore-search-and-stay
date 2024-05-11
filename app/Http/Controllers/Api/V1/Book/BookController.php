@@ -32,6 +32,7 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
-        return $book->delete();
+        $book->delete();
+        return response()->noContent();
     }
 }
