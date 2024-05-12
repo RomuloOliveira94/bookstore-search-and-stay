@@ -56,24 +56,6 @@ php artisan migrate
 php artisan serve
 ``````
 
-GET|HEAD        api/v1/books books.index › Api\V1\Book\BookController@ind…
-  POST            api/v1/books books.store › Api\V1\Book\BookController@sto…
-  GET|HEAD        api/v1/books/{book} books.show › Api\V1\Book\BookControll…
-  PUT|PATCH       api/v1/books/{book} books.update › Api\V1\Book\BookContro…
-  DELETE          api/v1/books/{book} books.destroy › Api\V1\Book\BookContr…
-  GET|HEAD        api/v1/books/{book}/stores Api\V1\Relations\BookStoreCont…
-  POST            api/v1/books/{book}/stores Api\V1\Relations\BookStoreCont…
-  DELETE          api/v1/books/{book}/stores/{store} Api\V1\Relations\BookS…
-  POST            api/v1/login ........... Api\V1\Auth\LoginController@login
-  POST            api/v1/logout ........ Api\V1\Auth\LogoutController@logout
-  POST            api/v1/register .. Api\V1\Auth\RegisterController@register
-  GET|HEAD        api/v1/stores stores.index › Api\V1\Store\StoreController…
-  POST            api/v1/stores stores.store › Api\V1\Store\StoreController…
-  GET|HEAD        api/v1/stores/{store} stores.show › Api\V1\Store\StoreCon…
-  PUT|PATCH       api/v1/stores/{store} stores.update › Api\V1\Store\StoreC…
-  DELETE          api/v1/stores/{store}
-
-
 <h2 id="routes">📍 API Endpoints</h2>
 
 Send the bearer token for every request except "login" and "register".
@@ -266,7 +248,7 @@ Send the bearer token for every request except "login" and "register".
 }
 ```
 
-<h3 id="books_create">PUT api/v1/books/{id}</h3>
+<h3 id="books_update">PUT api/v1/books/{id}</h3>
 
 **REQUEST**
 ```json
@@ -276,6 +258,138 @@ Send the bearer token for every request except "login" and "register".
     "value": 65.59
 }
 ```
+
+<h3 id="stores_index">GET api/v1/stores</h3>
+
+**RESPONSE**
+```json
+[
+    {
+        "id": 1,
+        "name": "Breana Daugherty",
+        "address": "629 Isabella Lodge Apt. 962\nKozeyburgh, NV 18499",
+        "active": 1,
+        "created_at": "2024-05-11T21:56:43.000000Z",
+        "updated_at": "2024-05-11T21:56:43.000000Z",
+        "books": [
+            {
+                "id": 6,
+                "name": "Isobel O'Kon",
+                "ISBN": 695609629,
+                "value": "387.70",
+                "created_at": "2024-05-11T21:56:43.000000Z",
+                "updated_at": "2024-05-11T21:56:43.000000Z",
+                "pivot": {
+                    "store_id": 1,
+                    "book_id": 6,
+                    "quantity": 5
+                }
+            },
+            {
+                "id": 26,
+                "name": "Cordie Hackett",
+                "ISBN": 34359,
+                "value": "52.59",
+                "created_at": "2024-05-11T22:22:41.000000Z",
+                "updated_at": "2024-05-11T22:22:41.000000Z",
+                "pivot": {
+                    "store_id": 1,
+                    "book_id": 26,
+                    "quantity": 5
+                }
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Elmer Kling",
+        "address": "8630 Ritchie Harbors\nNew Dorotheashire, CT 47761",
+        "active": 1,
+        "created_at": "2024-05-11T21:56:43.000000Z",
+        "updated_at": "2024-05-11T21:56:43.000000Z",
+        "books": [],
+    }
+]
+```
+
+<h3 id="stores_create">POST api/v1/stores</h3>
+
+**REQUEST**
+```json
+{
+    "name": "Romin Bookstore",
+    "address": "13h avenue",
+    "active" : true
+}
+```
+
+**RESPONSE**
+```json
+{
+    "name": "Romin Bookstore",
+    "address": "13h avenue",
+    "active" : true,
+    "updated_at": "2024-05-12T02:53:39.000000Z",
+    "created_at": "2024-05-12T02:53:39.000000Z",
+    "id": 23
+}
+```
+
+
+<h3 id="stores_show">GET api/v1/stores/{id}</h3>
+
+**RESPONSE**
+```json
+{
+        "id": 1,
+        "name": "Breana Daugherty",
+        "address": "629 Isabella Lodge Apt. 962\nKozeyburgh, NV 18499",
+        "active": 1,
+        "created_at": "2024-05-11T21:56:43.000000Z",
+        "updated_at": "2024-05-11T21:56:43.000000Z",
+        "books": [
+            {
+                "id": 6,
+                "name": "Isobel O'Kon",
+                "ISBN": 695609629,
+                "value": "387.70",
+                "created_at": "2024-05-11T21:56:43.000000Z",
+                "updated_at": "2024-05-11T21:56:43.000000Z",
+                "pivot": {
+                    "store_id": 1,
+                    "book_id": 6,
+                    "quantity": 5
+                }
+            },
+            {
+                "id": 26,
+                "name": "Cordie Hackett",
+                "ISBN": 34359,
+                "value": "52.59",
+                "created_at": "2024-05-11T22:22:41.000000Z",
+                "updated_at": "2024-05-11T22:22:41.000000Z",
+                "pivot": {
+                    "store_id": 1,
+                    "book_id": 26,
+                    "quantity": 5
+                }
+            }
+        ]
+    },
+```
+
+<h3 id="stores_create">PUT api/v1/stores/{id}</h3>
+
+**REQUEST**
+```json
+{
+    "name": "Rometas Bookstore",
+    "address": "cachimbo avenue",
+    "active" : false
+}
+```
+
+
 
 ## License
 
