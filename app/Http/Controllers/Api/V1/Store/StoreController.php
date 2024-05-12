@@ -31,6 +31,11 @@ class StoreController extends Controller
 
     public function destroy(Store $store)
     {
+        if ($store->books()->exists()) {
+            $store->books()->detach();
+            $store->delete();
+        }
+
         $store->delete();
         return response()->noContent();
     }
