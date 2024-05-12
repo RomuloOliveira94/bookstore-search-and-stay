@@ -87,12 +87,12 @@ Send the bearer token for every request except "login" and "register".
 | <kbd>POST api/v1/books</kbd>     | create a new book see [request details](#books_create)
 | <kbd>GET api/v1/books/{id}</kbd>     | show a book by id with store see [response details](#books_show)
 | <kbd>PUT api/v1/books/{id}</kbd>     | update a book by id see [request details](#books_update)
-| <kbd>DELETE api/v1/books/{id}</kbd>     | delete a book by id [response details](#books_delete)
+| <kbd>DELETE api/v1/books/{id}</kbd>     | delete a book by id 
 | <kbd>GET api/v1/stores</kbd>     | show all stores see [request details](#store_index)
 | <kbd>POST api/v1/stores</kbd>     | create a store see [response details](#store_create)
 | <kbd>GET api/v1/stores/{id}</kbd>     | show a store by id see [request details](#store_show)
 | <kbd>PUT api/v1/stores/{id}</kbd>     | upadate a store by id [response details](#store_update)
-| <kbd>DELETE api/v1/stores/{id}</kbd>     | delete a store by id see [request details](#store_delete)
+| <kbd>DELETE api/v1/stores/{id}</kbd>     | delete a store by id 
 | <kbd>POST api/v1/books/{id}/stores/{id}</kbd>     | create book and store relation with quantity data see [response details](#book_store_create)
 | <kbd>PUT api/v1/books/{id}/stores/{id}</kbd>     | update the quantity from book and store pivot table [response details](#book_store_update)
 | <kbd>DELETE api/v1/books/{id}/stores/{id}</kbd>     | remove the relation between book and store [request details](#book_store_delete)
@@ -146,7 +146,7 @@ Send the bearer token for every request except "login" and "register".
 }
 ```
 
-<h3 id="register">GET api/v1/books</h3>
+<h3 id="books_index">GET api/v1/books</h3>
 
 **RESPONSE**
 ```json
@@ -208,18 +208,72 @@ Send the bearer token for every request except "login" and "register".
                     "quantity": 1
                 }
             },
-        ]
-    ...
+       ]
+    }
+]
 ```
 
-<h3 id="register">POST api/v1/books</h3>
+<h3 id="books_create">POST api/v1/books</h3>
+
+**REQUEST**
+```json
+{
+    "name": "Game of Thrones",
+    "ISBN": 123452, 
+    "value": 60.59
+}
+```
 
 **RESPONSE**
 ```json
 {
-  "name": "Fernanda Kipper",
-  "age": 20,
-  "email": "her-email@gmail.com"
+    "name": "Game of Thrones",
+    "ISBN": 123452,
+    "value": 60.59,
+    "updated_at": "2024-05-12T00:22:36.000000Z",
+    "created_at": "2024-05-12T00:22:36.000000Z",
+    "id": 36
+}
+```
+
+
+<h3 id="books_show">GET api/v1/books/{id}</h3>
+
+**RESPONSE**
+```json
+{
+    "id": 6,
+    "name": "Isobel O'Kon",
+    "ISBN": 695609629,
+    "value": "387.70",
+    "created_at": "2024-05-11T21:56:43.000000Z",
+    "updated_at": "2024-05-11T21:56:43.000000Z",
+    "stores": [
+        {
+            "id": 1,
+            "name": "Breana Daugherty",
+            "address": "629 Isabella Lodge Apt. 962\nKozeyburgh, NV 18499",
+            "active": 1,
+            "created_at": "2024-05-11T21:56:43.000000Z",
+            "updated_at": "2024-05-11T21:56:43.000000Z",
+            "pivot": {
+                "book_id": 6,
+                "store_id": 1,
+                "quantity": 5
+            }
+        }
+    ]
+}
+```
+
+<h3 id="books_create">PUT api/v1/books/{id}</h3>
+
+**REQUEST**
+```json
+{
+    "name": "Game of Thrones House of the Dragon",
+    "ISBN": 123452, 
+    "value": 65.59
 }
 ```
 
