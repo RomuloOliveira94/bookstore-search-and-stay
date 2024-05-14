@@ -378,7 +378,7 @@ Send the bearer token for every request except "login" and "register".
     },
 ```
 
-<h3 id="stores_create">PUT api/v1/stores/{id}</h3>
+<h3 id="stores_update">PUT api/v1/stores/{id}</h3>
 
 **REQUEST**
 ```json
@@ -386,6 +386,47 @@ Send the bearer token for every request except "login" and "register".
     "name": "Rometas Bookstore",
     "address": "cachimbo avenue",
     "active" : false
+}
+```
+
+<h3 id="book_store_create">POST api/v1/books/{id}/stores/{id}</h3>
+
+**REQUEST**
+```json
+{
+    "quantity": 1
+}
+```
+
+**RESPONSE**
+```json
+{
+    "message": "Store added to book"
+}
+```
+
+<h3 id="book_store_update">PUT api/v1/books/{id}/stores/{id}</h3>
+
+**REQUEST**
+```json
+{
+    "quantity": 5
+}
+```
+
+**RESPONSE**
+```json
+{
+   "message": "Store updated in book"
+}
+```
+
+<h3 id="book_store_delete">PUT api/v1/books/{id}/stores/{id}</h3>
+
+**RESPONSE**
+```json
+{
+   "message": "Store removed from book"
 }
 ```
 
